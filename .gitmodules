@@ -1,0 +1,3 @@
+[submodule "dummies-gui"]
+	path = dummies-gui
+	url = git@github.com:Teidesat/dummies-gui.git
