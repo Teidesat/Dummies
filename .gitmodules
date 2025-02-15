@@ -2,3 +2,7 @@
 	path = dummies-gui
 	url = git@github.com:Teidesat/dummies-gui.git
 	branch = master
+[submodule "dummies-firmware"]
+	path = dummies-firmware
+	url = git@github.com:Teidesat/dummies-firmware.git
+	branch = master
