@@ -1,0 +1,3 @@
+include:
+  - ./dummies-gui/docker-compose.yml
+  - ./dummies-server/docker-compose.yml
