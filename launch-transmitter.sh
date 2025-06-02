@@ -15,6 +15,13 @@ else
     echo "Warning: currently, this script only supports X11 and Wayland sessions. If you are using a different session type, the GUI applications may not be displayed correctly."
 fi
 
+# Assign and export some environment variables for the Docker containers
+MY_UID="$(id -u)"
+export MY_UID
+
+MY_GID="$(id -g)"
+export MY_GID
+
 # Update all submodules to the latest commit
 git submodule update --init --recursive
 
