@@ -38,16 +38,16 @@ To use this software you need to follow these steps:
 
    **#TODO: Add instructions for flashing the firmware into the ESP32 microcontrollers**
 
-5. Run the servers and GUIs on the host computer/s.
+5. Run the servers and GUIs on the host computer/s. Use the '--build' option to build the Docker images if you have made changes to the code or if you are running it for the first time. Otherwise, you can run the scripts without the '--build' option to use the pre-built images.
 
    - For the transmitter dummy: 
 
       ```bash
-      ./launch-transmitter.sh
+      ./launch-transmitter.sh [--build]
       ```
 
    - For the receiver dummy:
 
       ```bash
-      ./launch-receiver.sh
+      ./launch-receiver.sh [--build]
       ```
