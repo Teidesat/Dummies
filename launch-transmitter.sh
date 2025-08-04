@@ -2,6 +2,13 @@
 set -o nounset -o errexit -o pipefail
 IFS=$'\n\t'
 
+# Check if '--build' argument is provided
+if [[ $# -gt 0 ]] && [[ "$1" == "--build" ]]; then
+    BUILD=true
+else
+    BUILD=false
+fi
+
 # Create the dummies-network if it doesn't exist
 if ! docker network ls | grep -G "\\bdummies-network\\b"; then
     echo "Creating Docker network 'dummies-network'..."
@@ -22,21 +29,23 @@ export MY_UID
 MY_GID="$(id -g)"
 export MY_GID
 
-# Update all submodules to the latest commit
-git submodule update --init --recursive
+# Update all submodules to the latest commit [NOT WORKING AS EXPECTED]
+# git submodule update --init --recursive
 
-# Build the GUI's Docker image
-cd dummies-gui
-#git checkout dev
-docker build -f Dockerfile -t dummies-gui:latest .
+if $BUILD; then
+    # Build the GUI's Docker image
+    cd dummies-gui
+    git checkout dev
+    docker build -f Dockerfile -t dummies-gui:latest .
 
-# Build the server's Docker image
-cd ../dummies-server
-#git checkout dev
-docker build -f Dockerfile -t dummies-server:latest .
+    # Build the server's Docker image
+    cd ../dummies-server
+    git checkout dev
+    docker build -f Dockerfile -t dummies-server:latest .
 
-# Return to the root directory
-cd ..
+    # Return to the root directory
+    cd ..
+fi
 
 # Launch the Docker containers for the transmitter GUI and server
 docker compose up transmitter-gui transmitter-server
