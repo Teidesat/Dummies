@@ -1,12 +1,12 @@
 [submodule "dummies-gui"]
 	path = dummies-gui
-	url = git@github.com:Teidesat/dummies-gui.git
+	url = https://github.com/Teidesat/dummies-gui.git
 	branch = dev
 [submodule "dummies-firmware"]
 	path = dummies-firmware
-	url = git@github.com:Teidesat/dummies-firmware.git
+	url = https://github.com/Teidesat/dummies-firmware.git
 	branch = dev
 [submodule "dummies-server"]
 	path = dummies-server
-	url = git@github.com:Teidesat/dummies-server.git
+	url = https://github.com/Teidesat/dummies-server.git
 	branch = dev
