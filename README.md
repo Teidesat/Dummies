@@ -33,6 +33,35 @@ To use this software you need to follow these steps:
    ```bash
    git clone --recurse-submodules https://github.com/Teidesat/Dummies
    ```
+If you want this process to be done automatically, you can create a small Bash script that clones the repository, switches to the desired branch, synchronizes the submodule configuration, and updates all submodules to the latest commit available in the branch configured.
+
+Create a file called clone_dummies.sh with the following content:
+   ```bash
+  #!/bin/bash
+
+   # Variables
+   REPO_URL="https://github.com/Teidesat/Dummies.git"
+   REPO_DIR="Dummies"
+   
+   # Clone the repository WITH submodules
+   git clone --recurse-submodules "$REPO_URL" "$REPO_DIR"
+   cd "$REPO_DIR"
+   
+   # Switch to the dev branch
+   git checkout dev
+   
+   # Sync the .gitmodules file in case of URL changes
+   git submodule sync
+   
+   # Update submodules to the latest commit of their branches
+   git submodule update --init --recursive --remote
+   ```
+Then make it executable and run it:
+   ```bash
+   chmod +x clone_dummies.sh
+   ./clone_dummies.sh
+   ```
+This additional submodule update step is included so that, after cloning, the submodules are automatically moved to the latest commit available in their configured remote branches instead of remaining only at the commit initially referenced by the repository.
 
 4. Flash the firmware into the ESP32 microcontrollers. You can do this by running the following command from the root of the repository:
 
